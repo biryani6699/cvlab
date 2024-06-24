@@ -29,3 +29,44 @@ cv2.imshow('Scaled Image', scaled_image)
 cv2.imshow('Rotated Image', rotated_image) 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+
+
+
+PROGRAM 3 (b)
+Display the color image and its Resized images by different methods.
+
+CODE :
+
+import cv2
+import numpy as np
+
+# Load the image
+image = cv2.imread('input_image.jpg')
+
+# Define scaling factors
+scaling_factors = [0.5, 2.0] # You can add more scaling factors as needed
+
+# Define interpolation methods
+interpolation_methods = [cv2.INTER_NEAREST, cv2.INTER_LINEAR, cv2.INTER_CUBIC]
+
+# Display the original image 
+cv2.imshow('Original Image', image)
+
+# Perform resizing with different methods 
+for factor in scaling_factors:
+  for method in interpolation_methods: # Perform scaling
+    scaled_image = cv2.resize(image, None, fx=factor, fy=factor, interpolation=method)
+    # Display the resized image method_name = ""
+    if method == cv2.INTER_NEAREST: 
+      method_name = "Nearest Neighbor"
+    elif method == cv2.INTER_LINEAR: 
+      method_name = "Bilinear"
+    elif method == cv2.INTER_CUBIC: 
+      method_name = "Bicubic"
+    
+    cv2.imshow(f'Resized (Factor: {factor}, Method: {method_name})', scaled_image) 
+
+# Wait for a key press and close all windows
+cv2.waitKey(0) 
+cv2.destroyAllWindows()
