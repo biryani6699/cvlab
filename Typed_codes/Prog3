@@ -1,0 +1,31 @@
+PROGRAM 3 (a)
+Implementation of Transformations of an Image i)Scaling & Rotation
+
+CODE :
+
+import cv2
+import numpy as np
+
+# Load the image
+image = cv2.imread('C:/Users/anuam/Downloads/apple.jpg')
+
+# Define scaling factor
+scaling_factor = 0.5 # You can change this value
+
+# Perform scaling
+scaled_image = cv2.resize(image, None, fx=scaling_factor, fy=scaling_factor, interpolation=cv2.INTER_LINEAR)
+
+# Define rotation angle (in degrees) 
+rotation_angle = 45 # You can change this value
+
+# Perform rotation
+height, width = scaled_image.shape[:2]
+rotation_matrix = cv2.getRotationMatrix2D((width/2, height/2), rotation_angle, 1) 
+rotated_image = cv2.warpAffine(scaled_image, rotation_matrix, (width, height))
+
+# Display the original, scaled, and rotated images 
+cv2.imshow('Original Image', image) 
+cv2.imshow('Scaled Image', scaled_image) 
+cv2.imshow('Rotated Image', rotated_image) 
+cv2.waitKey(0)
+cv2.destroyAllWindows()
