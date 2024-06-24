@@ -64,3 +64,65 @@ plt.imshow(S, cmap='gray')
 plt.subplot(3, 2, 6) 
 plt.imshow(D, cmap='gray') 
 plt.show() 
+
+
+
+
+
+PROGRAM 2(b)
+Simulation and Display of an Image, Negative of an Image(Binary & Gray Scale.
+
+CODE :
+
+import cv2
+import matplotlib.pyplot as plt
+
+# Read the image
+i = cv2.imread('C:/Users/anuam/Downloads/apple.jpg')
+
+# Convert BGR to RGB (OpenCV reads images in BGR format) 
+i = cv2.cvtColor(i, cv2.COLOR_BGR2RGB)
+
+# Plot original image 
+plt.subplot(3, 2, 1) 
+plt.imshow(i) 
+plt.title('Original Image') 
+plt.axis('off')
+
+# Red Component 
+r = i[:, :, 0]
+plt.subplot(3, 2, 2) 
+plt.imshow(r, cmap='gray')
+
+# Displaying in grayscale 
+plt.title('Red Component') 
+plt.axis('off')
+
+
+# Green Component 
+g = i[:, :, 1]
+plt.subplot(3, 2, 3) 
+plt.imshow(g, cmap='gray')
+
+# Displaying in grayscale 
+plt.title('Green Component') 
+plt.axis('off')
+
+# Blue Component 
+b = i[:, :, 2]
+plt.subplot(3, 2, 4) 
+plt.imshow(b, cmap='gray')
+
+# Displaying in grayscale 
+plt.title('Blue Component') 
+plt.axis('off')
+
+# Convert to grayscale
+rg = cv2.cvtColor(i, cv2.COLOR_RGB2GRAY) 
+plt.subplot(3, 2, 5)
+plt.imshow(rg, cmap='gray') 
+plt.title('Gray Image') 
+plt.axis('off')
+
+plt.tight_layout() 
+plt.show()
