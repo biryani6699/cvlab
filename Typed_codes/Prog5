@@ -1,0 +1,31 @@
+PROGRAM 5
+Display of bit plane of an image.
+
+CODE :
+
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the image in grayscale
+image = cv2.imread('input_image.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Get the dimensions of the image 
+height, width = image.shape
+
+# Create an array to store the bit planes
+bit_planes = np.zeros((8, height, width), dtype=np.uint8)
+
+# Calculate the bit planes for i in range(8):
+bit_planes[i] = (image >> i) & 1 # Extract ith bit plane
+
+# Display the bit planes 
+plt.figure(figsize=(12, 6)) 
+for i in range(8):
+  plt.subplot(2, 4, i+1) 
+  plt.imshow(bit_planes[i], cmap='gray') 
+  plt.title(f'Bit Plane {i+1}') 
+  plt.axis('off')
+
+plt.tight_layout() 
+plt.show()
