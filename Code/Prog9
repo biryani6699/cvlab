@@ -19,7 +19,7 @@ def laplacian_filter(img, alpha=0.05):
 # Main script 
 try:
   # Read the image
-  i = safe_imread('C:/Users/anuam/OneDrive/Desktop/neuron.jpg')
+  i = safe_imread('apple.jpeg')
   
   # Display the original image 
   plt.subplot(4, 2, 1)
