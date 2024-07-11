@@ -1,0 +1,111 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.ndimage import convolve 
+from scipy.ndimage import median_filter
+
+# Read the image
+I = cv2.imread('C:/Users/anuam/OneDrive/Desktop/neuron.jpg')
+K = cv2.cvtColor(I, cv2.COLOR_BGR2GRAY)
+
+# Add salt and pepper noise
+J = cv2.randu(K.copy(), 0, 255)
+noise = np.random.choice([0, 255], K.shape, p=[0.95, 0.05]) 
+J[noise == 255] = 255
+J[noise == 0] = 0
+
+# Apply median filters
+f = median_filter(J, size=(3, 3))
+f1 = median_filter(J, size=(10, 10))
+
+# Display results 
+plt.figure(figsize=(12, 8))
+plt.subplot(3, 2, 1)
+plt.imshow(cv2.cvtColor(I, cv2.COLOR_BGR2RGB)) 
+plt.title('Original Image')
+plt.axis('off')
+
+plt.subplot(3, 2, 2) 
+plt.imshow(K, cmap='gray') 
+plt.title('Gray Image') 
+plt.axis('off')
+
+plt.subplot(3, 2, 3) 
+plt.imshow(J, cmap='gray') 
+plt.title('Noise added Image') 
+plt.axis('off')
+
+plt.subplot(3, 2, 4) 
+plt.imshow(f, cmap='gray') 
+plt.title('3x3 Median Filter') 
+plt.axis('off')
+
+plt.subplot(3, 2, 5) 
+plt.imshow(f1, cmap='gray') 
+plt.title('10x10 Median Filter') 
+plt.axis('off')
+
+
+# Mean Filter and Average Filter 
+plt.figure(figsize=(10, 8))
+i = cv2.imread('C:/Users/anuam/OneDrive/Desktop/neuron.jpg') 
+g = cv2.cvtColor(i, cv2.COLOR_BGR2GRAY)
+
+# 3x3 Average filter
+g1 = np.ones((3, 3)) / 9.0 
+b1 = convolve(g, g1)
+
+plt.subplot(2, 2, 1)
+plt.imshow(cv2.cvtColor(i, cv2.COLOR_BGR2RGB)) 
+plt.title('Original Image')
+plt.axis('off')
+
+plt.subplot(2, 2, 2) 
+plt.imshow(g, cmap='gray') 
+plt.title('Gray Image') 
+plt.axis('off')
+
+plt.subplot(2, 2, 3) 
+plt.imshow(b1, cmap='gray') 
+plt.title('3x3 Average Filter') 
+plt.axis('off')
+
+# 10x10 Average filter
+g2 = np.ones((10, 10)) / 100.0 
+b2 = convolve(g, g2)
+
+plt.subplot(2, 2, 4) 
+plt.imshow(b2, cmap='gray') 
+plt.title('10x10 Average Filter') 
+plt.axis('off')
+
+
+# Implementation of filter using Convolution 
+plt.figure(figsize=(10, 8))
+I = cv2.imread('C:/Users/anuam/OneDrive/Desktop/earcell.jpg', cv2.IMREAD_GRAYSCALE)
+
+plt.subplot(2, 2, 1)
+plt.imshow(I, cmap='gray') 
+plt.title('Original Image') 
+plt.axis('off')
+
+# Convolution with filter a
+a = np.array([[0.001, 0.001, 0.001], [0.001, 0.001, 0.001], [0.001, 0.001, 0.001]])
+R = convolve(I, a)
+
+plt.subplot(2, 2, 2) 
+plt.imshow(R, cmap='gray') 
+plt.title('Filtered Image') 
+plt.axis('off')
+
+# Convolution with filter b
+b = np.array([[0.005, 0.005, 0.005], [0.005, 0.005, 0.005], [0.005, 0.005, 0.005]])
+R1 = convolve(I, b)
+
+plt.subplot(2, 2, 3) 
+plt.imshow(R1, cmap='gray') 
+plt.title('Filtered Image 2') 
+plt.axis('off')
+
+plt.tight_layout() 
+plt.show()
