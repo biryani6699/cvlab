@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.fftpack import fft2, fftshift
 
 # Read the image and convert to double precision array 
-l = plt.imread('cancercell.jpg').astype(float)
+l = plt.imread('apple.jpeg').astype(float)
 
 # Perform 2-D FFT 
 f1 = np.fft.fft2(l)
