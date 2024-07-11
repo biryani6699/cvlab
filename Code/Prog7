@@ -4,7 +4,7 @@ from skimage import io,.color
 from scipy.stats import pearsonr
 
 # Read the image
-i = io.imread('cancercell.jpg')
+i = io.imread('apple.jpeg')
 
 # Display original image 
 plt.subplot(2, 2, 1) 
