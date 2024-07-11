@@ -5,7 +5,7 @@ from scipy.ndimage import convolve
 from scipy.ndimage import median_filter
 
 # Read the image
-I = cv2.imread('C:/Users/anuam/OneDrive/Desktop/neuron.jpg')
+I = cv2.imread('apple.jpeg')
 K = cv2.cvtColor(I, cv2.COLOR_BGR2GRAY)
 
 # Add salt and pepper noise
